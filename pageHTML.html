@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Les recettes de cuisine</title>
+		<script src="http://localhost:3000/recettes"></script>
+	</head>
+	<body>
+
+
+		fetch("API_recetteCuisine.json")
+		.then(response => response.json())
+  		.then(json => console.log(json));
+	</body>
+</html>

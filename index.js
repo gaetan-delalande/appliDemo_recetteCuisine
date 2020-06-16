@@ -3,16 +3,22 @@ var express = require('express');
 
 //creer objet body parser afin de permettre aux utilisateur d'ajouter une propriété.
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extende: false}));
-app.use(bodyParser.json());
 
 //Instansiation serveur
 var hostname = 'localhost';
 var port =3000;
 var app = express();
 
+
 //C'est à partir de cet objet myRouter, que nous allons implémenter les méthodes. 
 var myRouter = express.Router(); 
+
+//Variable recettes afin d'appeller le fichier .json
+var fs=require('fs');
+var data=fs.readFileSync('API_recetteCuisine.json', 'utf8');
+var recette=JSON.parse(data);
+console.log(recette);
+
 
 myRouter.route('/recettes')
 
@@ -31,6 +37,7 @@ app.listen(port, hostname, function (){
 
 //Déclaration de la route de l'URI racine
 myRouter.route('/')
+
 // all permet de prendre en charge toutes les méthodes
 .all(function(req, res){
 	res.json({message: "Bienvenue sur notre API des recettes", methode: req.method});
