@@ -1,7 +1,22 @@
-
-
-{ “recettes” : [ { “id”:”1”,  
-“titre”: “Cheeseburger”,  
-“description”: “Faites chauffer le four”, 
-“votes”: 5}, 
-]} 
+{	"recettes":
+	[
+	{
+		"id":"1",
+		"titre":"Cheeseburger",
+		"description": "Faite chauffer le four",
+		"vote": 5
+	},
+	{
+		"id":"2",
+		"titre":"Boullette de viande",
+		"description":"Enrouler les boulletes avec vos mains",
+		"votes":8
+	},
+	{
+		"id":"3",
+		"titre":"Onigiris",
+		"description":"Pates de ris, c'est un plat japonais ne me demandé pas comment faire...",
+		"votes":8
+	}
+	]
+} 
