@@ -2,13 +2,30 @@
 <html>
 	<head>
 		<title>Les recettes de cuisine</title>
-		<script src="http://localhost:3000/recettes"></script>
+		<script>
+			var essaiCache = {
+				method: "GET",
+				body: "string",
+				headers: {
+      				"Content-Type": "text/plain;charset=UTF-8"
+      			},
+      			Cache: "reload",
+			};
+			function lireRecette() {
+				fetch("http://localhost:3000/recettes", essaiCache)
+					.then(response => response.json())
+  					.then(json => {console.log(json)
+  						//A faire afficher les résultat dans le div
+  						var result = json.Parse(data);
+						return result;
+						//dans la div de l'id="résultat"
+						
+  					});
+  			}
+		</script>
 	</head>
 	<body>
-
-
-		fetch("API_recetteCuisine.json")
-		.then(response => response.json())
-  		.then(json => console.log(json));
+		<a onclick="lireRecette(); return(false)">test lireRecette</a>
+		<div id="resultat">Voici les résultat:<script type="text/javascript">lireRecette();</script> </div>
 	</body>
 </html>

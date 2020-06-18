@@ -24,7 +24,7 @@ myRouter.route('/recettes')
 
 //importation des méthodes GET POST PUT DELLETE
 .get(function(req, res){
-	res.json({message: "liste toutes les recettes", methode: req.method, });
+	res.json(recette);
 });
 
 // Nous demandons à l'application d'utiliser notre routeur
