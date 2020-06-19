@@ -9,7 +9,6 @@ var hostname = 'localhost';
 var port =3000;
 var app = express();
 
-
 //C'est à partir de cet objet myRouter, que nous allons implémenter les méthodes. 
 var myRouter = express.Router(); 
 
@@ -25,15 +24,6 @@ myRouter.route('/recettes')
 //importation des méthodes GET POST PUT DELLETE
 .get(function(req, res){
 	res.json({recette,
-		id: req.query.id
-	});
-})
-
-//liste de infos celon id
-.get(function(req, res){
-	res.json({messsage: "liste des infos par id:",
-		id: req.query.id,
-		methode : req.method
 	});
 });
 
@@ -53,10 +43,14 @@ myRouter.route('/')
 	res.json({message: "Bienvenue sur notre API des recettes", methode: req.method});
 });
 
-myRouter.route('/recettes/id')
+myRouter.route('/recettes/:id')
 
 .get(function (req,res){
 	res.json({
-		message : "Vous souhaitez accéder aux informations de la recette n°" + req.params.id
+		message : "Vous souhaitez accéder aux informations de la recette n°" + req.params.id,
+		id : req.query.id
 	});
 })
+
+const cache = await caches.open('monCache');
+cache.add(new Request('/API_recetteCuisine.json'));

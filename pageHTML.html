@@ -12,15 +12,14 @@
       			Cache: "reload",
 			};
 			function lireRecette() {
+				var result
 				fetch("http://localhost:3000/recettes", essaiCache)
 					.then(response => response.json())
   					.then(json => {console.log(json)
   						//A faire afficher les résultat dans le div
-  						var result = json.Parse(data);
-						return result;
-						//dans la div de l'id="résultat"
-						
+  						result = json.Parse(data);
   					});
+  					return result;
   			}
 		</script>
 	</head>
