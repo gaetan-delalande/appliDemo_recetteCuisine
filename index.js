@@ -24,13 +24,23 @@ myRouter.route('/recettes')
 
 //importation des méthodes GET POST PUT DELLETE
 .get(function(req, res){
-	res.json(recette);
+	res.json({recette,
+		id: req.query.id
+	});
+})
+
+//liste de infos celon id
+.get(function(req, res){
+	res.json({messsage: "liste des infos par id:",
+		id: req.query.id,
+		methode : req.method
+	});
 });
 
 // Nous demandons à l'application d'utiliser notre routeur
 app.use(myRouter);
 
-//lauch server
+//launch server
 app.listen(port, hostname, function (){
 	console.log("Mon serveur ne fonctionne pas sur http:// sauf si je vois ce message" + hostname + ":" + port);
 });
@@ -44,14 +54,9 @@ myRouter.route('/')
 });
 
 myRouter.route('/recettes/id')
+
 .get(function (req,res){
-	res.json({message : "Vous souhaitez accéder aux informations de la recette n°" + req.params.id});
+	res.json({
+		message : "Vous souhaitez accéder aux informations de la recette n°" + req.params.id
+	});
 })
-
-.put(function (req,res){
-	res.json({message : "Vous souhaitez modifier les informations de la recette n°" + req.params.id});
-})
-
-.delete(function (req,res){
-	res.json({message : "Vous souhaitez accéder aux informations de la recettes n°" + req.params.id});
-});
