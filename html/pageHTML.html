@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Les recettes de cuisine</title>
+	<script type="text/javascript" src="creationServiceWorker.js">
+		var essaiCache = {
+			method: "GET",
+			headers: {
+				"Content-Type": "text/plain;charset=UTF-8"
+			},
+			cache: "reload",
+		};
+
+		function lireRecette() {
+			fetch("http://localhost:3000/recettes", essaiCache)
+				.then(response => response.json())
+				.then(json => {
+					console.log(json);
+					//A faire afficher les résultat dans le div
+					document.getElementById("resultat").innerHTML = json;
+				});
+		}
+
+		function lireId() {
+			fetch("http://localhost:3000/recettes/", essaiCache)
+				.then(response => response.json())
+				.then(json => {
+					console.log(json);
+					//A faire afficher les résultat dans le div
+					document.getElementById("resultat").innerHTML = json;
+				});
+		}
+	</script>
+</head>
+
+<body>
+	<br/>
+	<a href="#" onclick="lireRecette(); return(false)"><h1>test lireRecette</h1></a>
+	<div id="resultat"></div>
+
+	<div id="worker">
+		<button onclick="sendMessageToWorker()">Hello !</button>
+    	<button onclick="askWorkerRecurringTask()">Recurring task</button>
+    </div>
+
+</body>
+
+</html>
