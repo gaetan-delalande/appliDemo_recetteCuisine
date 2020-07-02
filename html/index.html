@@ -4,7 +4,8 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Les recettes de cuisine</title>
-	<script type="text/javascript" src="creationServiceWorker.js">
+	<script type="text/javascript" src="/serviceWorker/creationServiceWorker.js"></script>
+	<script type="text/javascript">
 		var essaiCache = {
 			method: "GET",
 			headers: {
@@ -19,7 +20,7 @@
 				.then(json => {
 					console.log(json);
 					//A faire afficher les résultat dans le div
-					document.getElementById("resultat").innerHTML = json;
+					document.getElementById("resultat").innerHTML = JSON.stringify(json);
 				});
 		}
 
@@ -36,14 +37,16 @@
 </head>
 
 <body>
-	<br/>
-	<a href="#" onclick="lireRecette(); return(false)"><h1>test lireRecette</h1></a>
+	<br />
+	<a href="#" onclick="lireRecette(); return(false)">
+		<h1>test lireRecette</h1>
+	</a>
 	<div id="resultat"></div>
-
+	<div id="output"></div>
 	<div id="worker">
 		<button onclick="sendMessageToWorker()">Hello !</button>
-    	<button onclick="askWorkerRecurringTask()">Recurring task</button>
-    </div>
+		<button onclick="askWorkerRecurringTask()">Recurring task</button>
+	</div>
 
 </body>
 

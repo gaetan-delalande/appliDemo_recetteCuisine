@@ -16,7 +16,6 @@ var myRouter = express.Router();
 var fs = require("fs");
 var data = fs.readFileSync("API_recetteCuisine.json", "utf8");
 var jsonRecettes = JSON.parse(data);
-console.log(jsonRecettes);
 
 myRouter
   .route("/recettes")
@@ -34,19 +33,6 @@ myRouter
     res.set("Cache-control: no-cache, no-store, must-revalidate");
     res.json(jsonRecettes);
   });
-
-// Nous demandons à l'application d'utiliser notre routeur
-app.use(myRouter);
-
-//launch server
-app.listen(port, hostname, function () {
-  console.log(
-    "Mon serveur ne fonctionne pas sur http:// sauf si je vois ce message" +
-      hostname +
-      ":" +
-      port
-  );
-});
 
 //Déclaration de la route de l'URI racine
 myRouter
@@ -70,17 +56,25 @@ myRouter
     res.json(maRecetteId);
   });
 
-
 myRouter
   .route("/recettes/titre/:titre")
 
-  .get(function (req,res){
+  .get(function (req, res) {
     const maRecetteTitle = jsonRecettes.recettes.find((r) => {
       return r.titre === req.params.titre;
     });
     res.json(maRecetteTitle);
-  })
+  });
 
+// Nous demandons à l'application d'utiliser notre routeur
+app.use(myRouter);
 //Express 4. A revoir
-app.use(express.static('serviceWorker'));
-app.use(express.static('html'));
+app.use("/serviceWorker", express.static("serviceWorker"));
+app.use("/html", express.static("html"));
+
+//launch server
+app.listen(port, hostname, function () {
+  console.log(
+    "Mon serveur fonctionne à tous les coups :  http://" + hostname + ":" + port
+  );
+});
