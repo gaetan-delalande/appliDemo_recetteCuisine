@@ -1,5 +1,5 @@
 //crée le worker et communique avec lui
-const worker = new Worker("worker.js");
+const worker = new Worker("sw.js");
 
 function sendMessageToWorker() {
   worker.postMessage("hello");

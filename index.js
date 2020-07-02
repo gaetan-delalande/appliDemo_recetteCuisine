@@ -81,17 +81,6 @@ myRouter
     res.json(maRecetteTitle);
   })
 
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/sw.js")
-    .then(serviceWorker => {
-      console.log("Service Worker registered: ", serviceWorker);
-    })
-    .catch(error => {
-      console.error("Error registering the Service Worker: ", error);
-    });
-}
-
-app.use(express.static('app'));
+//Express 4. A revoir
+app.use(express.static('serviceWorker'));
 app.use(express.static('html'));

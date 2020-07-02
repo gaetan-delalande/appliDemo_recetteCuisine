@@ -1,6 +1,5 @@
 self.addEventListener("message", function(messageEvent) {
   if (messageEvent.data === "hello") {
-    // Post a message back to the main JS
     self.postMessage("Hello to you too !");
   }
 
