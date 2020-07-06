@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Les recettes de cuisine</title>
+	<script type="text/javascript" src="/serviceWorker/creationServiceWorker.js"></script>
+	<script type="text/javascript">
+		var essaiCache = {
+			method: "GET",
+			headers: {
+				"Content-Type": "text/plain;charset=UTF-8"
+			},
+			cache: "reload",
+		};
+
+		function lireRecette() {
+			fetch("http://localhost:3000/recettes", essaiCache)
+				.then(response => response.json())
+				.then(json => {
+					console.log(json);
+					//A faire afficher les résultat dans le div
+					document.getElementById("resultat").innerHTML = JSON.stringify(json);
+				});
+		}
+
+		function lireId() {
+			fetch("http://localhost:3000/recettes/:id", essaiCache)
+				.then(response => response.json())
+				.then(json => {
+					console.log(json);
+					//A faire afficher les résultat dans le div
+					document.getElementById("resultatId").innerHTML = JSON.stringify(json);
+				});
+		}
+
+		function lireTitre() {
+			fetch("http://localhost:3000/recettes/titre/:titre", essaiCache)
+				.then(response => response.json())
+				.then(json => {
+					console.log(json);
+					//A faire afficher les résultat dans le div
+					document.getElementById("resultatTitre").innerHTML = JSON.stringify(json);
+				});
+		}
+	</script>
+</head>
+
+<body>
+	<br />
+	<a href="#" onclick="lireRecette(); return(false)">
+		<h1>test lireRecette</h1>
+	</a>
+	<div id="resultat">
+		<table>
+		<tr>
+			<td id="resultatId">id</td><td>titre</td><td>description</td><td>vote</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		</table>
+	</div>
+	<div id="output"></div>
+	<div id="worker">
+		<button onclick="sendMessageToWorker()">hello !</button>
+		<button onclick="askWorkerRecurringTask()">recurring task</button>
+	</div>
+
+</body>
+
+</html>
